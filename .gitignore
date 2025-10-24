@@ -176,8 +176,8 @@ openeurotop.egg-info/
 docs/sphinx/_build/
 docs/sphinx/build/
 
-# Bibliographie (fichiers PDF lourds - optionnel selon votre choix)
-# Biblio/*.pdf
+# Bibliographie (fichiers PDF lourds - ne pas publier)
+Biblio/
 
 # Configuration PyPI (sécurité - ne jamais commiter les tokens)
 .pypirc
