@@ -1,79 +1,110 @@
-# OpenEurOtop
+<div align="center">
 
-[![PyPI version](https://badge.fury.io/py/openeurotop.svg)](https://pypi.org/project/openeurotop/)
-[![Python versions](https://img.shields.io/pypi/pyversions/openeurotop.svg)](https://pypi.org/project/openeurotop/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Documentation Status](https://readthedocs.org/projects/openeurotop/badge/?version=latest)](https://openeurotop.readthedocs.io/)
-[![GitHub](https://img.shields.io/github/stars/Pavlishenku/OpenEurOtop?style=social)](https://github.com/Pavlishenku/OpenEurOtop)
+# 🌊 OpenEurOtop
 
-> 📚 **[📖 Documentation complète](https://openeurotop.readthedocs.io/)** | 🐍 **[PyPI](https://pypi.org/project/openeurotop/)** | 💻 **[GitHub](https://github.com/Pavlishenku/OpenEurOtop)**
+**Implémentation Python du guide EurOtop 2018 pour le calcul du franchissement de vagues**
 
-Implémentation Python des méthodes de calcul du guide EurOtop pour l'évaluation du franchissement de vagues sur les ouvrages côtiers.
+[![PyPI](https://img.shields.io/pypi/v/openeurotop?color=blue)](https://pypi.org/project/openeurotop/)
+[![Python](https://img.shields.io/pypi/pyversions/openeurotop)](https://pypi.org/project/openeurotop/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Documentation](https://readthedocs.org/projects/openeurotop/badge/?version=latest)](https://openeurotop.readthedocs.io/)
+[![GitHub Stars](https://img.shields.io/github/stars/Pavlishenku/OpenEurOtop?style=social)](https://github.com/Pavlishenku/OpenEurOtop)
 
-> 🎉 **Version 1.0.0** - Première version stable de production !
+[📖 Documentation](https://openeurotop.readthedocs.io/) • [🐍 PyPI](https://pypi.org/project/openeurotop/) • [💻 GitHub](https://github.com/Pavlishenku/OpenEurOtop) • [🐛 Issues](https://github.com/Pavlishenku/OpenEurOtop/issues)
 
-## Description
+</div>
 
-Ce package fournit une implémentation complète des formules et méthodes décrites dans le manuel EurOtop (2018) pour le calcul :
-- Du débit de franchissement moyen (mean wave overtopping discharge)
-- Des facteurs de réduction pour différentes caractéristiques de structures
-- Des paramètres de vagues et conditions hydrauliques
+---
 
-## Installation
-
-### Installation stable depuis PyPI
+## 🚀 Quick Start
 
 ```bash
 pip install openeurotop
 ```
 
-### Installation avec fonctionnalités Machine Learning
-
-```bash
-pip install openeurotop[ml]
-```
-
-### Installation pour développement
-
-```bash
-git clone https://github.com/Pavlishenku/OpenEurOtop.git
-cd OpenEurOtop
-pip install -e .[dev]
-```
-
-## Utilisation
-
-### Calcul du franchissement pour une digue lisse
-
 ```python
 from openeurotop import overtopping
 
-# Paramètres
-Hm0 = 2.5  # Hauteur significative des vagues (m)
-Tm_10 = 6.0  # Période moyenne (s)
-h = 10.0  # Profondeur d'eau (m)
-Rc = 3.0  # Revanche (m)
-alpha = 30.0  # Pente du talus (degrés)
-gamma_b = 1.0  # Facteur de berme
-gamma_f = 1.0  # Facteur de rugosité
-gamma_beta = 1.0  # Facteur d'obliquité
-
-# Calcul
+# Calcul du franchissement pour une digue à talus
 q = overtopping.digue_talus(
-    Hm0=Hm0,
-    Tm_10=Tm_10,
-    h=h,
-    Rc=Rc,
-    alpha_deg=alpha,
-    gamma_b=gamma_b,
-    gamma_f=gamma_f,
-    gamma_beta=gamma_beta
+    Hm0=2.5,      # Hauteur significative (m)
+    Tm_10=6.0,    # Période moyenne (s)
+    h=10.0,       # Profondeur d'eau (m)
+    Rc=3.0,       # Revanche (m)
+    alpha_deg=30  # Pente du talus (°)
 )
 
 print(f"Débit de franchissement : {q:.6f} m³/s/m")
 ```
 
-### Calcul pour un mur vertical
+---
+
+## 📋 À propos
+
+**OpenEurOtop** est une bibliothèque Python complète implémentant les méthodes de calcul du manuel [EurOtop 2018](http://www.overtopping-manual.com) pour l'évaluation du franchissement de vagues sur les ouvrages côtiers.
+
+### ✨ Caractéristiques principales
+
+- 🌊 **Formules EurOtop 2018** - Implémentation complète et validée
+- 🏗️ **Types de structures** - Digues à talus, murs verticaux, structures composites
+- 🎯 **Facteurs de réduction** - Support de >15 types de revêtements
+- 🤖 **Machine Learning** - Modèles pré-entraînés (Neural Networks, XGBoost)
+- 📊 **Analyses avancées** - Probabilistes, statistiques, run-up
+- ✅ **Tests & qualité** - >100 tests unitaires, >95% de couverture
+- 📚 **Documentation complète** - Guides, API, exemples, notebooks Jupyter
+
+---
+
+## 📦 Installation
+
+### Installation standard
+
+```bash
+pip install openeurotop
+```
+
+### Avec fonctionnalités Machine Learning
+
+```bash
+pip install openeurotop[ml]
+```
+
+### Pour le développement
+
+```bash
+git clone https://github.com/Pavlishenku/OpenEurOtop.git
+cd OpenEurOtop
+pip install -e .[dev]
+pytest  # Lancer les tests
+```
+
+**Support** : Python 3.8+ • Windows, Linux, macOS
+
+---
+
+## 💡 Exemples
+
+### Digue à talus avec enrochements
+
+```python
+from openeurotop import overtopping, reduction_factors
+
+# Facteur de rugosité pour enrochements
+gamma_f = reduction_factors.gamma_f_roughness(
+    type_revetement="enrochements_2couches"
+)
+
+q = overtopping.digue_talus(
+    Hm0=3.0,
+    Tm_10=7.0,
+    h=12.0,
+    Rc=4.5,
+    alpha_deg=35,
+    gamma_f=gamma_f
+)
+```
+
+### Mur vertical
 
 ```python
 from openeurotop import overtopping
@@ -87,58 +118,62 @@ q = overtopping.mur_vertical(
 )
 ```
 
-## Modules
+### Prédiction avec Machine Learning
 
-- `openeurotop.overtopping` : Calculs de franchissement pour différents types de structures
-- `openeurotop.wave_parameters` : Calcul des paramètres de vagues
-- `openeurotop.reduction_factors` : Facteurs de réduction (rugosité, berme, obliquité, etc.)
-- `openeurotop.constants` : Constantes physiques et coefficients
+```python
+from openeurotop import neural_network_clash
 
-## Références
-
-EurOtop (2018). Manual on wave overtopping of sea defences and related structures. 
-An overtopping manual largely based on European research, but for worldwide application.
-Van der Meer, J.W., Allsop, N.W.H., Bruce, T., De Rouck, J., Kortenhaus, A., Pullen, T., 
-Schüttrumpf, H., Troch, P. and Zanuttigh, B.
-www.overtopping-manual.com
-
-## Fonctionnalités
-
-- ✅ Implémentation complète des formules EurOtop 2018
-- ✅ Support digues à talus (lisses, rugueuses, avec bermes)
-- ✅ Support murs verticaux et structures composites
-- ✅ Modèles de Machine Learning (Neural Networks, XGBoost)
-- ✅ Analyses probabilistes et statistiques
-- ✅ >100 tests unitaires avec >95% de couverture
-- ✅ Documentation complète avec exemples
-- ✅ Notebooks Jupyter interactifs
-
-## Documentation
-
-- 📚 [Documentation complète](https://openeurotop.readthedocs.io/)
-- 📖 [Guide utilisateur](docs/GUIDE_UTILISATEUR.md)
-- 🔧 [Guide de contribution](CONTRIBUTING.md)
-- 📝 [Changelog](CHANGELOG.md)
-- 💻 [Exemples et notebooks](examples/)
-
-## Contribution
-
-Les contributions sont les bienvenues ! Consultez le [guide de contribution](CONTRIBUTING.md) pour plus d'informations.
-
-### Développeurs
-
-Pour configurer l'environnement de développement :
-
-```bash
-git clone https://github.com/Pavlishenku/OpenEurOtop.git
-cd OpenEurOtop
-pip install -e .[dev]
-pytest  # Exécuter les tests
+# Utiliser le modèle neural pré-entraîné
+predictor = neural_network_clash.CLASHPredictor()
+q_predicted = predictor.predict(
+    Hm0=2.5, Tm_10=6.0, h=10.0, Rc=3.0, 
+    alpha_deg=30, gamma_f=1.0
+)
 ```
 
-## Citation
+➡️ **Plus d'exemples** : [Documentation](https://openeurotop.readthedocs.io/) • [Notebooks](examples/)
 
-Si vous utilisez OpenEurOtop dans vos recherches, veuillez citer :
+---
+
+## 📚 Documentation
+
+| Ressource | Description | Lien |
+|-----------|-------------|------|
+| 📖 **Documentation complète** | API, guides, tutoriels | [ReadTheDocs](https://openeurotop.readthedocs.io/) |
+| 🚀 **Guide de démarrage** | Installation et premiers pas | [Quickstart](https://openeurotop.readthedocs.io/quickstart/) |
+| 👤 **Guide utilisateur** | Utilisation détaillée | [User Guide](docs/GUIDE_UTILISATEUR.md) |
+| 🔬 **Formules techniques** | Documentation scientifique | [Formules](docs/FORMULES_TECHNIQUES.md) |
+| 💻 **Exemples de code** | Scripts et notebooks Jupyter | [Examples](examples/) |
+| 🐛 **Signaler un bug** | Issues et discussions | [GitHub Issues](https://github.com/Pavlishenku/OpenEurOtop/issues) |
+
+---
+
+## 🛠️ Modules disponibles
+
+| Module | Description |
+|--------|-------------|
+| `overtopping` | Calculs de franchissement (digues, murs, structures composites) |
+| `wave_parameters` | Paramètres de vagues (longueur d'onde, cambrure, Iribarren) |
+| `reduction_factors` | Facteurs de réduction (rugosité, berme, obliquité, etc.) |
+| `run_up` | Calculs de run-up |
+| `probabilistic` | Analyses probabilistes et statistiques |
+| `neural_network` | Modèles de Machine Learning pré-entraînés |
+| `case_studies` | Cas d'études du manuel EurOtop |
+| `validation` | Outils de validation des paramètres |
+
+---
+
+## 🎓 Référence scientifique
+
+**EurOtop Manual (2018)**  
+*"Manual on wave overtopping of sea defences and related structures"*  
+Van der Meer, J.W., Allsop, N.W.H., Bruce, T., De Rouck, J., Kortenhaus, A., Pullen, T., Schüttrumpf, H., Troch, P. and Zanuttigh, B.
+
+🔗 [www.overtopping-manual.com](http://www.overtopping-manual.com)
+
+### Citation
+
+Si vous utilisez OpenEurOtop dans vos travaux, veuillez citer :
 
 ```bibtex
 @software{openeurotop2025,
@@ -146,18 +181,53 @@ Si vous utilisez OpenEurOtop dans vos recherches, veuillez citer :
   author = {OpenEurOtop Contributors},
   year = {2025},
   url = {https://github.com/Pavlishenku/OpenEurOtop},
-  version = {1.0.0}
+  version = {1.0.0},
+  doi = {10.5281/zenodo.XXXXXXX}
 }
 ```
 
-## Liens
+---
 
-- 🐍 [PyPI](https://pypi.org/project/openeurotop/)
-- 📦 [GitHub](https://github.com/Pavlishenku/OpenEurOtop)
-- 📚 [Documentation](https://openeurotop.readthedocs.io/)
-- 🐛 [Issues](https://github.com/Pavlishenku/OpenEurOtop/issues)
+## 🤝 Contribution
 
-## Licence
+Les contributions sont les bienvenues ! 
 
-MIT License
+- 🐛 **Bug reports** : [Ouvrir une issue](https://github.com/Pavlishenku/OpenEurOtop/issues)
+- 💡 **Suggestions** : [Discussions](https://github.com/Pavlishenku/OpenEurOtop/discussions)
+- 🔧 **Pull requests** : Consultez le [guide de contribution](CONTRIBUTING.md)
 
+### Pour les développeurs
+
+```bash
+git clone https://github.com/Pavlishenku/OpenEurOtop.git
+cd OpenEurOtop
+pip install -e .[dev]
+pytest                    # Tests
+pytest --cov=openeurotop  # Avec couverture
+```
+
+---
+
+## 📄 Licence
+
+Ce projet est sous licence **MIT** - voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+---
+
+## 🔗 Liens utiles
+
+- **Package PyPI** : https://pypi.org/project/openeurotop/
+- **Code source** : https://github.com/Pavlishenku/OpenEurOtop
+- **Documentation** : https://openeurotop.readthedocs.io/
+- **Issues** : https://github.com/Pavlishenku/OpenEurOtop/issues
+- **Changelog** : [CHANGELOG.md](CHANGELOG.md)
+
+---
+
+<div align="center">
+
+**Fait avec ❤️ pour la communauté de l'ingénierie côtière**
+
+⭐ **Si vous aimez ce projet, n'hésitez pas à lui donner une étoile !** ⭐
+
+</div>
