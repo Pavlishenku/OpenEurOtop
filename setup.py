@@ -3,9 +3,6 @@ from setuptools import setup, find_packages
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
-with open("requirements.txt", "r", encoding="utf-8") as fh:
-    requirements = [line.strip() for line in fh if line.strip() and not line.startswith("#")]
-
 setup(
     name="openeurotop",
     version="1.0.0",
@@ -43,7 +40,10 @@ setup(
     ],
     keywords="eurotop wave overtopping coastal engineering hydraulics",
     python_requires=">=3.8",
-    install_requires=requirements,
+    install_requires=[
+        "numpy>=1.20.0",
+        "scipy>=1.7.0",
+    ],
     extras_require={
         "dev": [
             "pytest>=6.0",
