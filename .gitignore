@@ -137,11 +137,26 @@ Thumbs.db
 *.txt
 !requirements.txt
 !pytest.ini
+
+# Fichiers MD temporaires et de développement
+*_CHECKLIST.md
+*_GUIDE*.md
+*_PUBLICATION*.md
+*_SUCCESS*.md
+*_SUMMARY*.md
+START_*.md
+RELEASE_*.md
+GITHUB_*.md
+_LIRE_*.md
+*_v*.md
+!CHANGELOG.md
+
+# Garder seulement les MD essentiels pour les utilisateurs
 *.md
 !README.md
 !CHANGELOG.md
-!LICENSE.md
 !CONTRIBUTING.md
+!LICENSE.md
 !docs/**/*.md
 !examples/**/*.md
 
@@ -166,4 +181,9 @@ docs/sphinx/build/
 
 # Configuration PyPI (sécurité - ne jamais commiter les tokens)
 .pypirc
-!.pypirc.template
+.pypirc.template
+
+# Scripts de développement/publication (ne pas publier)
+build_and_publish.py
+pre_publish_check.py
+publish_to_github.bat
