@@ -1,10 +1,12 @@
 # OpenEurOtop
 
-[![PyPI version](https://badge.fury.io/py/openeurotop.svg)](https://badge.fury.io/py/openeurotop)
+[![PyPI version](https://badge.fury.io/py/openeurotop.svg)](https://pypi.org/project/openeurotop/)
 [![Python versions](https://img.shields.io/pypi/pyversions/openeurotop.svg)](https://pypi.org/project/openeurotop/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Documentation Status](https://readthedocs.org/projects/openeurotop/badge/?version=latest)](https://openeurotop.readthedocs.io/en/latest/?badge=latest)
-[![CI/CD](https://github.com/Pavlishenku/OpenEurOtop/workflows/CI%2FCD%20Pipeline/badge.svg)](https://github.com/Pavlishenku/OpenEurOtop/actions)
+[![Documentation Status](https://readthedocs.org/projects/openeurotop/badge/?version=latest)](https://openeurotop.readthedocs.io/)
+[![GitHub](https://img.shields.io/github/stars/Pavlishenku/OpenEurOtop?style=social)](https://github.com/Pavlishenku/OpenEurOtop)
+
+> 📚 **[📖 Documentation complète](https://openeurotop.readthedocs.io/)** | 🐍 **[PyPI](https://pypi.org/project/openeurotop/)** | 💻 **[GitHub](https://github.com/Pavlishenku/OpenEurOtop)**
 
 Implémentation Python des méthodes de calcul du guide EurOtop pour l'évaluation du franchissement de vagues sur les ouvrages côtiers.
 

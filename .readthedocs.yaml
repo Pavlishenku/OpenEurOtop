@@ -32,5 +32,4 @@ python:
       path: .
       extra_requirements:
         - dev
-    - requirements: requirements.txt
 
